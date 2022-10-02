@@ -1,29 +1,25 @@
-import React from "react"
-import Button from "react-bootstrap/Button"
-import { useRef } from "react"
-import Form from "react-bootstrap/Form"
+import React from 'react'
+import Button from 'react-bootstrap/Button'
+import { useRef } from 'react'
+import Form from 'react-bootstrap/Form'
 
 const AddNewTour = (props) => {
-  const nameplace = useRef("")
-  const price = useRef("")
-  const description = useRef("")
-  const poster = useRef("")
+  const nameplace = useRef('')
+  const price = useRef('')
+  const description = useRef('')
+  const poster = useRef('')
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    if (
-      nameplace.current.value === "" ||
-      price.current.value === "" ||
-      description.current.value === ""
-    ) {
-      alert("!!! Ils faut Remplir tous les caces")
-    } else
-      props.onAddTours({
-        nameplace: nameplace.current.value,
-        price: price.current.value,
-        description: description.current.value,
-        poster: poster.current.value,
-      })
+
+    const tourData = {
+      nameplace: nameplace.current.value,
+      price: +price.current.value,
+      description: description.current.value,
+      poster: poster.current.value,
+    }
+
+    props.onAddTours(tourData)
   }
 
   return (

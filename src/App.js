@@ -1,29 +1,26 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import "./App.css"
-import { Routes, Route } from "react-router-dom"
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import { Routes, Route } from 'react-router-dom'
 
-import Home from "./component/Home"
-import tours from "./data/Data"
-import NavBar from "./component/NavBar"
-import TourList from "./component/TourList"
-import { useState } from "react"
-import AddNewTour from "./component/AddNewTour"
+import Home from './component/Home'
+import tours from './data/Data'
+import NavBar from './component/NavBar'
+import TourList from './component/TourList'
+import { useState } from 'react'
+import AddNewTour from './component/AddNewTour'
 function App() {
-  const [newtours, setTours] = useState([])
+  const [newtours, setTours] = useState(tours)
   const addtourshandle = (newtours) => {
     setTours((prevState) => {
       return [
         ...prevState,
         {
           id: Math.random().toString(),
-          nameplace: newtours.nameplace,
-          price: newtours.price,
-          poster: newtours.poster,
-          description: newtours.description,
+          ...newtours,
         },
       ]
     })
-    console.log("erreur")
+    console.log('erreur')
   }
   return (
     <div className="App">
@@ -31,7 +28,7 @@ function App() {
       <AddNewTour onAddTours={addtourshandle} />
       <Routes>
         <Route path="/Home" element={<Home />} />
-        <Route path="/TourList/" element={<TourList />} />
+        <Route path="/TourList/" element={<TourList tours={newtours} />} />
       </Routes>
     </div>
   )

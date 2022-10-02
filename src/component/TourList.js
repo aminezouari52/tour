@@ -1,12 +1,13 @@
-import React from "react"
-import tours from "../data/Data"
-import TourCard from "./TourCard"
+import React from 'react'
+import tours from '../data/Data'
+import TourCard from './TourCard'
 
-const TourList = () => {
+const TourList = (props) => {
   return (
     <div>
-      {tours.map((el, i) => (
+      {props.tours.map((el, i) => (
         <TourCard
+          key={el.id}
           nameplace={el.nameplace}
           price={el.price}
           poster={el.poster}
